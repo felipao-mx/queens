@@ -1,11 +1,18 @@
-from position import Position
+from .position import Position
 
 
 class Position2d(Position):
-    def __init__(self):
-        self.row = 0
-        self.column = 0
-        self.vector = [0, 0]
+
+    row = 0
+    column = 0
+
+    def __init__(self, vector):
+        if vector is None:
+            vector = [0, 0]
+        
+        super().__init__(vector)
+        self.setVector(vector)
+
 
     def setRow(self, row):
         self.row = row
