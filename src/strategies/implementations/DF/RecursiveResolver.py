@@ -3,8 +3,8 @@ from src.models.position2d import Position2d
 
 
 class RecursiveResolver:
-
-    solutions = []
+    def __init__(self):
+        self.solutions = []
 
     def resolve(self, rows, columns, currentColumn, pieces):
 
