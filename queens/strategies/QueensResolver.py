@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class QueensResolver(ABC):
 
     @abstractmethod
-    def findSolutions(self, pieces):
+    def resolve(self, rows, columns):
         pass
     
     
