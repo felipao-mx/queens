@@ -1,9 +1,8 @@
 from models.queen import Queen
 from models.position2d import Position2d
-from ..queensresolver import QueensResolver
 
 
-class RecursiveResolver(QueensResolver):
+class RecursiveResolver:
     def __init__(self):
         self._solutions = []
 
