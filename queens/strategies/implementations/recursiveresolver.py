@@ -1,5 +1,5 @@
-from src.models.queen import Queen
-from src.models.position2d import Position2d
+from models.queen import Queen
+from models.position2d import Position2d
 
 
 class RecursiveResolver:
@@ -32,9 +32,3 @@ class RecursiveResolver:
                 return True
 
         return False
-
-
-# resolver = DeepFirstResolver()
-# resolver.resolve(15, 15, 1, [])
-# print("soluciones: " + str(len(resolver.solutions)))
-# # for solution in resolver.solutions:

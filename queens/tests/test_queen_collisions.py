@@ -1,5 +1,5 @@
-from src.models.queen import Queen
-from src.models.position2d import Position2d
+from models.queen import Queen
+from models.position2d import Position2d
 
 def test_column_collision():
     column = 5

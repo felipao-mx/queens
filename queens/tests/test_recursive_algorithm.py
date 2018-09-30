@@ -1,5 +1,5 @@
-from  src.strategies.implementations.DF.RecursiveResolver import RecursiveResolver
 import pytest
+from  strategies.implementations.recursiveresolver import RecursiveResolver
 
 
 @pytest.mark.parametrize("rows,columns,expected",
