@@ -6,4 +6,6 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "./src/app.py"]
+CMD ["python", "./queens/app.py"]
+
+ENTRYPOINT [ "python", "./queens/app.py" ]

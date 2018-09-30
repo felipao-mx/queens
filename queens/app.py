@@ -1,9 +1,5 @@
 import argparse
-import sys
 from strategies.implementations.recursiveresolver import RecursiveResolver
-
-
-print(sys.path)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--rows", help="rows")
@@ -26,5 +22,5 @@ print("columns: " + str(arguments.cols))
 print("queens: " + str(arguments.queens))
 
 resolver = RecursiveResolver()
-resolver.resolve(arguments.rows, arguments.cols, 1, [])
+resolver.resolve(int(arguments.rows), int(arguments.cols), 1, [])
 print("Solutions found: " + str(len(resolver.solutions)))
