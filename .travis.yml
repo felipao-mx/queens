@@ -14,12 +14,8 @@ install:
 
 script: python -m pytest
 
-jobs:
-  include:
-    - stage: "dockerize"
-    - name: dockerizer
-    - if: branch = master
-    - script: 
-      - docker build -t flopezh/queens .
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker push flopezh/queens
+after_succees:
+  - if: branch = master
+  - docker build -t flopezh/queens .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push flopezh/queens
