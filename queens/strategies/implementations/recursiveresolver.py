@@ -1,6 +1,6 @@
 from models.queen import Queen
 from models.position2d import Position2d
-from strategies.queensresolver import QueensResolver
+from ..queensresolver import QueensResolver
 
 
 class RecursiveResolver(QueensResolver):
