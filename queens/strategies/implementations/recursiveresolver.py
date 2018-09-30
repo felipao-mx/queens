@@ -1,12 +1,17 @@
 from models.queen import Queen
 from models.position2d import Position2d
+from ..queensresolver import QueensResolver
 
 
-class RecursiveResolver:
+class RecursiveResolver(QueensResolver):
     def __init__(self):
-        self.solutions = []
+        self._solutions = []
 
-    def resolve(self, rows, columns, currentColumn, pieces):
+    def resolve(self, rows, columns):
+        self.findSolutions(rows, columns, 1, [])
+        return self._solutions
+
+    def findSolutions(self, rows, columns, currentColumn, pieces):
 
         for row in range(1, rows + 1):
             currentPiece = Queen(Position2d([currentColumn, row]))
@@ -17,9 +22,10 @@ class RecursiveResolver:
                 pieces.append(currentPiece)
 
                 if currentColumn < columns:
-                    self.resolve(rows, columns, currentColumn + 1, pieces)
+                    self.findSolutions(
+                        rows, columns, currentColumn + 1, pieces)
                 else:
-                    self.solutions.append(pieces.copy())
+                    self._solutions.append(pieces.copy())
 
                 pieces.pop()
 
