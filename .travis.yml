@@ -1,10 +1,20 @@
-  language: python
+sudo: required
 
-  python:
-    - "3.6"
-    - "3.7-dev"
-    
-  install:
-    - pip install -r requirements.txt
-  
-  script: python -m pytest
+language: python
+
+python:
+  - "3.6"
+  - "3.7-dev"
+
+services:
+  - docker
+
+before_install:
+  - docker build -t queens .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push flopezh/queens
+
+install:
+  - pip install -r requirements.txt
+
+script: python -m pytest
