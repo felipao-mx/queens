@@ -14,7 +14,7 @@ install:
 
 script: python -m pytest
 
-after_succees:
+after_success:
   - if: branch = master
   - docker build -t flopezh/queens .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
