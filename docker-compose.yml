@@ -1,13 +1,25 @@
 version: '3'
 services:
-  db:
-    image: postgres
-    ports:
-      - "5432":"5432"
+  postgresdb:
+    restart: 'always'
+    image: flopezh/postgres
+    environment:
+      - "FILLA_DB_USER=queens"
+      - "FILLA_DB_PASSWORD=queens"
+      - "FILLA_DB_DATABASE=queensdb"
+      - "POSTGRES_PASSWORD=admin"
+    networks: 
+      - postgresdb_network
+  app:
+    build: .
     environment:
       POSTGRES_USER: queens
       POSTGRES_PASSWORD: queens
-      POSTGRES_DATABASE: queensdb
-
-  app:
-    build: .
+      POSTGRES_DB: queensdb
+    networks: 
+      - postgresdb_network
+    depends_on: 
+      - postgresdb
+networks: 
+  postgresdb_network:
+    driver: bridge
