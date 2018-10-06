@@ -17,7 +17,7 @@ class BenchmarkService:
         benchmark.endDate = datetime.datetime.now()
 
         self.benchmarkRepository.add(benchmark)
-        self.queensRepository.add(results)
+        self.queensRepository.add(results, benchmark.id)
 
 
     def manySolutions(self, first, last):

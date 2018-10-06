@@ -13,7 +13,7 @@ services:
   app:
     build: .
     environment:
-      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_USER: ${DATABASE_USER} 
       POSTGRES_PASSWORD: ${DATABASE_USER_PWD}
       POSTGRES_DB: ${DATABASE_NAME}
     networks: 
