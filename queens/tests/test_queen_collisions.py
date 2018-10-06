@@ -5,8 +5,8 @@ from models.position2d import Position2d
 def test_column_collision():
     column = 5
 
-    queen1 = Queen(Position2d([3, column]))
-    queen2 = Queen(Position2d([5, column]))
+    queen1 = Queen(Position2d([column, 3]))
+    queen2 = Queen(Position2d([column, 5]))
 
     assert queen1.isInColumnCollisionWith(queen2)
 
@@ -21,15 +21,15 @@ def test_not_column_collision():
 def test_row_collision():
     row = 3
 
-    queen1 = Queen(Position2d([row, 8]))
-    queen2 = Queen(Position2d([row, 3]))
+    queen1 = Queen(Position2d([8, row]))
+    queen2 = Queen(Position2d([3, row]))
 
     assert queen1.isInRowCollisionWith(queen2)
 
 
 def test_not_row_collision():
-    queen1 = Queen(Position2d([5, 9]))
-    queen2 = Queen(Position2d([3, 9]))
+    queen1 = Queen(Position2d([9, 5]))
+    queen2 = Queen(Position2d([9, 3]))
 
     assert not(queen1.isInRowCollisionWith(queen2))
 
