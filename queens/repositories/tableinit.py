@@ -7,8 +7,8 @@ import os
 user = os.environ['POSTGRES_USER']
 pwd = os.environ['POSTGRES_PASSWORD']
 db = os.environ['POSTGRES_DB']
-host = 'postgresdb'
-port = '5432'
+host = os.environ['DB_HOST']
+port = os.environ['DB_PORT']
 
 dbString = 'postgresql+psycopg2://%s:%s@%s:%s/%s' % (user, pwd, host, port, db)
 print("connection string: " + dbString)
@@ -37,6 +37,4 @@ class QueensPositionRegister(base):
 
 
 Session = sessionmaker(db)
-# session = Session()
-
 base.metadata.create_all(db)

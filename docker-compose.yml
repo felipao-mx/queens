@@ -16,6 +16,8 @@ services:
       POSTGRES_USER: ${DATABASE_USER} 
       POSTGRES_PASSWORD: ${DATABASE_USER_PWD}
       POSTGRES_DB: ${DATABASE_NAME}
+      DB_HOST: postgresdb
+      DB_PORT: 5432
     networks: 
       - postgresdb_network
     depends_on: 

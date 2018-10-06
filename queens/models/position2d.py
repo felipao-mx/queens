@@ -22,7 +22,7 @@ class Position2d(Position):
         self.column = column
         self.vector[0] = column
 
-    def setPosition(self, row, column):
+    def setPosition(self, column, row):
         self.setRow(row)
         self.setColumn(column)
 
