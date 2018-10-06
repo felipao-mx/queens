@@ -1,0 +1,29 @@
+version: '3'
+services:
+  postgresdb:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_USER_PWD}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports: 
+      - "5001:5432"
+    networks: 
+      - postgresdb_network
+  app:
+    build: .
+    environment:
+      POSTGRES_USER: ${DATABASE_USER} 
+      POSTGRES_PASSWORD: ${DATABASE_USER_PWD}
+      POSTGRES_DB: ${DATABASE_NAME}
+      DB_HOST: postgresdb
+      DB_PORT: 5432
+    networks: 
+      - postgresdb_network
+    depends_on: 
+      - "postgresdb"
+    command: ["./wait-for-it.sh", "postgresdb:5432", "--", "python", "./queens/app.py"]
+
+networks: 
+  postgresdb_network:
+    driver: bridge
