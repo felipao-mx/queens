@@ -1,25 +1,34 @@
-import argparse
+import flask
+from flask import request, jsonify
 from strategies.implementations.recursiveresolver import RecursiveResolver
 from repositories.benchmarkrepository import BenchmarkRepository
 from repositories.queensrepository import QueensPositionRepository
 from repositories.tableinit import Session
 from benchmarkservice import BenchmarkService
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-r", "--rows", help="rows")
-parser.add_argument("-c", "--cols", help="columns")
+app = flask.Flask(__name__)
+# app.config["DEBUG"] = True
 
-arguments = parser.parse_args()
 
-if arguments.rows is None or arguments.cols is None:
-    print("Setting default rows and columns: 8x8, 8 queens")
-    arguments.rows = 8
-    arguments.cols = 8
+@app.route('/', methods=['GET'])
+def home():
+    return '''
+    <h1> Queens resolver</h1>
+    '''
 
-print("rows: " + str(arguments.rows))
-print("columns: " + str(arguments.cols))
 
-session = Session()
-benchmarkService = BenchmarkService(RecursiveResolver(), BenchmarkRepository(session), QueensPositionRepository(session))
+@app.errorhandler(404)
+def page_not_found(enumerate):
+    return "<h1>404 :(</h1><p> The resource could not be found.</p>", 404
 
-benchmarkService.singleSolution(int(arguments.rows))
+
+@app.route('/queens/<queensCount>/solutions')
+def resolve(queensCount):
+    session = Session()
+    benchmarkService = BenchmarkService(RecursiveResolver(), BenchmarkRepository(
+        session), QueensPositionRepository(session))
+    return jsonify(benchmarkService.singleSolution(int(queensCount)))
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=True)
