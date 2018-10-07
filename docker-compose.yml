@@ -18,6 +18,10 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
       DB_HOST: postgresdb
       DB_PORT: 5432
+    volumes:
+      - .:/app
+    ports:
+      - "8888:5000"
     networks: 
       - postgresdb_network
     depends_on: 
