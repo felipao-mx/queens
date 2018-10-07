@@ -13,6 +13,6 @@ RUN apk update && \
 
 # RUN pip install -r requirements.txt
 
-# CMD ["python", "./queens/app.py"]
+CMD ["chmod", "+x","./wait-for-it.sh"]
 
 # ENTRYPOINT [ "python", "./queens/app.py" ]
